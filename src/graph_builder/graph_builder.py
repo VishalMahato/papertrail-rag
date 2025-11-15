@@ -2,19 +2,19 @@
 
 from langgraph.graph import START, END , StateGraph
 from src.state.state import RAGState
-from src.nodes.nodes import RAGNodes
+from src.nodes.reactnode import RAGNodes
 
 class GraphBuilder:
     """ Builds and Orchestrates the langgraph workflow"""
     
-    def __init__(self,retriver,llm):
+    def __init__(self,retriever,llm):
         """Initializes graph builder
 
         Args:
             retriver: Document retriever instance to retrieve from vector store
             llm : language model instance
         """
-        self.nodes= RAGNodes
+        self.nodes= RAGNodes(retriever= retriever, llm=llm)
         self.graph= None
     
     def build(self):
